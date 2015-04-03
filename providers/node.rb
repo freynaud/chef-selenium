@@ -56,11 +56,13 @@ action :install do
         new_resource.name, selenium_java_exec, args, new_resource.port, new_resource.display)
     end
 
-    windows_reboot "Reboot to start #{new_resource.name}" do
-      reason "Reboot to start #{new_resource.name}"
-      timeout node['windows']['reboot_timeout']
-      action :nothing
-      only_if { platform_family?('windows') }
-    end
+    if platform?('windows')
+          windows_reboot "Reboot to start #{new_resource.name}" do
+            reason "Reboot to start #{new_resource.name}"
+            timeout node['windows']['reboot_timeout']
+            action :nothing
+            only_if { platform_family?('windows') }
+          end
+        end
   end
 end
