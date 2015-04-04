@@ -2,6 +2,7 @@ actions :install
 default_action :install
 
 attribute :name, kind_of: String, name_attribute: true
+attribute :id, kind_of: String, default: nil
 attribute :host, kind_of: String, default: 'ip'
 attribute :port, kind_of: Integer, default: 5555
 attribute :extHost, kind_of: String, default: 'localhost'
